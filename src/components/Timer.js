@@ -10,6 +10,8 @@ import { changeToTrue, changeToFalse } from '../features/buttonCondition/buttonC
 
 const Timer = () => {
     const currentButtonCondition = useSelector((state) => state.buttonCondition.value);
+    const minutes = useSelector((state) => state.minTimer.value);
+    const seconds = useSelector((state) => state.secTimer.value);
 
     const dispatch = useDispatch();
 
@@ -23,7 +25,10 @@ const Timer = () => {
 
     return(
         <Container>
-            <TimerContainer>t</TimerContainer>
+            <TimerContainer>
+                <span>{minutes}</span>
+                <span>{seconds}</span>
+            </TimerContainer>
             <ButtonsContainer>
                 <button 
                     onClick={() => changeButtonCondition()}
@@ -47,6 +52,19 @@ const TimerContainer = styled.div`
     width: 100%;
     height: 70%;
     background-color: green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span{
+        height: 100%;
+        background-color: red;
+        flex: 1;
+        font-size: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 `;
 
 const ButtonsContainer = styled.div`
