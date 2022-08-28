@@ -4,8 +4,11 @@ export const secTimerSlice = createSlice({
     name: 'secTimer',
     initialState: { value: 0 },
     reducers: {
-        increment: (state) => { state.value += 1 },
+        secIncrement: (state) => { state.value += 1 },
+        secReset: (state) =>  { state.value = 0 },
     }
 });
+
+export const { secIncrement, setReset } = secTimerSlice.actions;
 
 export default secTimerSlice.reducer;

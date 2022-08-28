@@ -9,4 +9,6 @@ const buttonConditionSlice = createSlice({
     }
 });
 
+export const { changeToTrue, changeToFalse } = buttonConditionSlice.actions;
+
 export default buttonConditionSlice.reducer;
