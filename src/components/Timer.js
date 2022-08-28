@@ -1,10 +1,12 @@
+import { useEffect } from 'react';
+
 //STYLED-COMPONENTS IMPORTS
 import styled from 'styled-components';
 
 //REDUX IMPORTS
 import { useSelector, useDispatch } from 'react-redux';
 // import { minIncrement, minReset } from '../features/minTimer/minTimerSlice';
-// import { secIncrement, secReset } from '../features/secTimer/secTimerSlice';
+import { secIncrement, secReset } from '../features/secTimer/secTimerSlice';
 import { changeToTrue, changeToFalse } from '../features/buttonCondition/buttonConditionSlice';
 
 
@@ -23,11 +25,25 @@ const Timer = () => {
         }
     }
 
+    let timer = null;
+
+    useEffect(() => {
+
+        if(currentButtonCondition === true){
+            timer = setInterval(() => {
+                dispatch(secIncrement());
+            }, 1000);
+        }
+
+        return () =>  clearInterval(timer);
+
+    },[currentButtonCondition])
+
     return(
         <Container>
             <TimerContainer>
-                <span>{minutes}</span>
-                <span>{seconds}</span>
+                <span>{minutes < 10 ? "0" + minutes : minutes}</span>
+                <span>{seconds < 10 ? "0" + seconds : seconds}</span>
             </TimerContainer>
             <ButtonsContainer>
                 <button 
@@ -60,7 +76,7 @@ const TimerContainer = styled.div`
         height: 100%;
         background-color: red;
         flex: 1;
-        font-size: 100px;
+        font-size: 200px;
         display: flex;
         justify-content: center;
         align-items: center;

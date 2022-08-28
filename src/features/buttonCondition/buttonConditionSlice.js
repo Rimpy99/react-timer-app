@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const buttonConditionSlice = createSlice({
     name: 'buttonCondition',
-    initialState: { value: true },
+    initialState: { value: false },
     reducers: {
         changeToTrue: (state) => { state.value = true },
         changeToFalse: (state) => { state.value = false },
