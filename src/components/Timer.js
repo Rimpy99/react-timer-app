@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 //REDUX IMPORTS
 import { useSelector, useDispatch } from 'react-redux';
-// import { minIncrement, minReset } from '../features/minTimer/minTimerSlice';
+import { minIncrement, minReset } from '../features/minTimer/minTimerSlice';
 import { secIncrement, secReset } from '../features/secTimer/secTimerSlice';
 import { changeToTrue, changeToFalse } from '../features/buttonCondition/buttonConditionSlice';
 
@@ -25,19 +25,32 @@ const Timer = () => {
         }
     }
 
-    let timer = null;
-
     useEffect(() => {
 
+        let timer;
+
         if(currentButtonCondition === true){
+            if(seconds === 4){
+                dispatch(secReset());
+                dispatch(minIncrement());
+            }
+
             timer = setInterval(() => {
                 dispatch(secIncrement());
             }, 1000);
         }
 
-        return () =>  clearInterval(timer);
+        return () => clearInterval(timer)
 
-    },[currentButtonCondition])
+    },[currentButtonCondition, seconds, dispatch])
+
+    const resetTimer = () => {
+        dispatch(minReset());
+        dispatch(secReset());
+        if(currentButtonCondition === true){
+            dispatch(changeButtonCondition(false));
+        }
+    }
 
     return(
         <Container>
@@ -49,8 +62,9 @@ const Timer = () => {
                 <button 
                     onClick={() => changeButtonCondition()}
                 >
-                    {currentButtonCondition ? 'START' : 'STOP'}
+                    {currentButtonCondition ? 'STOP' : 'START'}
                 </button>
+                <button onClick={() => {resetTimer()}}>RESET</button>
             </ButtonsContainer>
         </Container>
     )
