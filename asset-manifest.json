@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/react-timer-app/static/css/main.c7ec3132.css",
-    "main.js": "/react-timer-app/static/js/main.dea541f2.js",
+    "main.js": "/react-timer-app/static/js/main.63fa5a88.js",
     "index.html": "/react-timer-app/index.html",
     "main.c7ec3132.css.map": "/react-timer-app/static/css/main.c7ec3132.css.map",
-    "main.dea541f2.js.map": "/react-timer-app/static/js/main.dea541f2.js.map"
+    "main.63fa5a88.js.map": "/react-timer-app/static/js/main.63fa5a88.js.map"
   },
   "entrypoints": [
     "static/css/main.c7ec3132.css",
-    "static/js/main.dea541f2.js"
+    "static/js/main.63fa5a88.js"
   ]
 }
